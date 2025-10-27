@@ -43,4 +43,6 @@ echo --------------------------------------------------
 sqlite3 movies_rating.db -box -echo "WITH RECURSIVE split_genres(movie_id, genre, remaining) AS ( SELECT id, substr(genres, 1, instr(genres || '|', '|') - 1), substr(genres || '|', instr(genres || '|', '|') + 1) FROM movies WHERE genres != '' UNION ALL SELECT movie_id, substr(remaining, 1, instr(remaining || '|', '|') - 1), substr(remaining || '|', instr(remaining || '|', '|') + 1) FROM split_genres WHERE remaining != '' ) SELECT DISTINCT genre FROM split_genres ORDER BY genre;"
 echo " "
 
+
+
 pause
