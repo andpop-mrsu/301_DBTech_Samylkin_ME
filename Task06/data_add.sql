@@ -12,12 +12,14 @@ VALUES
 ('Роман Пьянов', 'roman.pianov@example.com', 'male', date('now'), 
     (SELECT id FROM occupations WHERE name = 'student'));
 
+
 -- 2. Добавление новых фильмов
 INSERT INTO movies (title, year)
 VALUES 
 ('Двухсотлетний человек', 1999),
 ('Закатать в асфальт', 2018),
 ('Догмен', 2023);
+
 
 -- 3. Добавление жанров для фильмов
 INSERT INTO movies_genres (movie_id, genre_id)
@@ -42,6 +44,7 @@ VALUES
 ((SELECT id FROM movies WHERE title = 'Догмен'), 
  (SELECT id FROM genres WHERE name = 'Comedy'));
 
+
 -- 4. Добавление отзывов
 INSERT INTO ratings (user_id, movie_id, rating, timestamp)
 VALUES 
@@ -51,6 +54,7 @@ VALUES
  (SELECT id FROM movies WHERE title = 'Закатать в асфальт'), 4.3, strftime('%s', 'now')),
 ((SELECT id FROM users WHERE email = 'maxim.samylkin@example.com'), 
  (SELECT id FROM movies WHERE title = 'Догмен'), 4.8, strftime('%s', 'now'));
+
 
 -- 5. Добавление тегов
 INSERT INTO tags (user_id, movie_id, tag, timestamp)
